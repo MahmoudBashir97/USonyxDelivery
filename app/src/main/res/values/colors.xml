@@ -12,5 +12,10 @@
     <color name="splashColor">#E9FAFF</color>
     <color name="splashColor_night">#7EDCF6FD</color>
 
+    <!--Login Screen -->
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="textColor">#000000</color>
+    <color name="welcomeColor">#004F62</color>
+    <color name="inputsColor">#00000029</color>
 
 </resources>
