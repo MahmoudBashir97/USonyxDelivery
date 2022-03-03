@@ -73,6 +73,15 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
 
+    //sdp
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    // Koin for the dependencies injections
+    implementation 'org.koin:koin-android:2.0.0-rc-2'
+    implementation 'org.koin:koin-androidx-viewmodel:2.0.0-rc-2'
+    implementation 'org.koin:koin-androidx-scope:2.0.0-rc-2'
+
+
 // Local Unit Tests
     implementation "androidx.test:core:1.4.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
