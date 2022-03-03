@@ -10,6 +10,7 @@
 
     <!-- Splash Screen -->
     <color name="splashColor">#E9FAFF</color>
+    <color name="splashColor_night">#7EDCF6FD</color>
 
 
 </resources>
