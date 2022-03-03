@@ -41,13 +41,13 @@ class LoginScreenFragment : Fragment() {
                         AutoTransition()
                     )
                     hiddenView.visibility = View.GONE
-                    showMoreLessBtn.text = "Show Less"
+                    showMoreLessBtn.text = "Show More"
                 }else{
                     TransitionManager.beginDelayedTransition(bigLin,
                         AutoTransition()
                     )
                     hiddenView.visibility = View.VISIBLE
-                    showMoreLessBtn.text = "Show More"
+                    showMoreLessBtn.text = "Show Less"
                 }
             }
         }
