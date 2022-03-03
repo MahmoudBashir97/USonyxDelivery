@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/_17sdp">
+
+    <LinearLayout
+        android:id="@+id/hidden_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <EditText
+            android:id="@+id/edt_year"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_33sdp"
+            android:background="@drawable/back_input_form"
+            android:hint="Year"
+            android:textAlignment="center"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:layout_margin="@dimen/_4sdp"
+            />
+
+        <EditText
+            android:id="@+id/edt_financial_unit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_33sdp"
+            android:background="@drawable/back_input_form"
+            android:hint="Financial Unit"
+            android:textAlignment="center"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:layout_margin="@dimen/_4sdp"
+            />
+
+        <EditText
+            android:id="@+id/edt_branch_number"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_33sdp"
+            android:background="@drawable/back_input_form"
+            android:hint="Branch Number"
+            android:textAlignment="center"
+            android:textColorHint="@color/textColor"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:layout_margin="@dimen/_4sdp"
+            />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edt_user_id"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_33sdp"
+        android:background="@drawable/back_input_form"
+        android:hint="User ID"
+        android:textAlignment="center"
+        android:textColorHint="@color/textColor"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:layout_margin="@dimen/_4sdp"
+        />
+
+    <EditText
+        android:id="@+id/edt_password"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_33sdp"
+        android:background="@drawable/back_input_form"
+        android:hint="Password"
+        android:textAlignment="center"
+        android:textColorHint="@color/textColor"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:layout_margin="@dimen/_4sdp"
+        />
+
+</LinearLayout>

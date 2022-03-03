@@ -17,5 +17,6 @@
     <color name="textColor">#000000</color>
     <color name="welcomeColor">#004F62</color>
     <color name="inputsColor">#00000029</color>
+    <color name="inputsFormColor">#F1F5FB</color>
 
 </resources>

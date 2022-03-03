@@ -1,64 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.LoginScreenFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <data>
+        <import type="android.view.View"/>
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_107sdp">
+        android:layout_height="match_parent"
+        tools:context=".ui.fragments.LoginScreenFragment">
 
-        <ImageView
-            android:layout_width="@dimen/_101sdp"
-            android:layout_height="@dimen/_107sdp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_circle" />
-        <ImageView
-            android:layout_width="@dimen/_27sdp"
-            android:layout_height="@dimen/_27sdp"
-            android:src="@drawable/ic_language"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/_16sdp"/>
-
-        <ImageView
-            android:layout_width="@dimen/_161sdp"
-            android:layout_height="@dimen/_63sdp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_15sdp"
-            android:src="@drawable/onyx_logo" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-    </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_107sdp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
-        <TextView
-            android:layout_width="@dimen/_234sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:text="Welcome Back!"
-            android:textSize="29sp"
-            android:textColor="@color/welcomeColor"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"/>
+                <ImageView
+                    android:layout_width="@dimen/_101sdp"
+                    android:layout_height="@dimen/_107sdp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_circle" />
 
-        <TextView
-            android:layout_width="@dimen/_166sdp"
-            android:layout_height="@dimen/_15sdp"
-            android:text="Log back into your account"
-            android:textSize="14sp"
-            android:textColor="@color/welcomeColor"
-            android:textStyle="normal"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"/>
+                <ImageView
+                    android:layout_width="@dimen/_27sdp"
+                    android:layout_height="@dimen/_27sdp"
+                    android:src="@drawable/ic_language"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_161sdp"
+                    android:layout_height="@dimen/_63sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:src="@drawable/onyx_logo" />
 
 
-    </LinearLayout>
+            </RelativeLayout>
 
-</RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_110sdp">
+
+                <TextView
+                    android:layout_width="@dimen/_234sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Welcome Back!"
+                    android:textSize="29sp"
+                    android:textColor="@color/welcomeColor"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="@dimen/_166sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:text="Log back into your account"
+                    android:textSize="14sp"
+                    android:textColor="@color/welcomeColor"
+                    android:textStyle="normal"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal" />
+
+                <include layout="@layout/login_input_form" />
+
+                <TextView
+                    android:id="@+id/show_more_less_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Show More"
+                    android:textSize="16sp"
+                    android:textColor="@color/welcomeColor"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp" />
+
+                <Button
+                    android:id="@+id/login_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_33sdp"
+                    android:background="@drawable/login_btn_back"
+                    android:text="Log in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_margin="@dimen/_17sdp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_194sdp"
+                    android:layout_height="@dimen/_170sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/delivery"
+                    android:layout_marginTop="@dimen/_55sdp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>
