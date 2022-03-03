@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentLoginScreenBinding
 import kotlin.math.log
@@ -30,6 +31,15 @@ class LoginScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
        doTransitionWithShiwMoreLessBtn()
+       navigateToHomeScreen()
+    }
+
+    private fun navigateToHomeScreen() {
+        loginBinding.apply {
+            loginBtn.setOnClickListener {
+                findNavController().navigate(LoginScreenFragmentDirections.actionLoginScreenFragmentToHomeDeliveryOrdersFragment())
+            }
+        }
     }
 
     private fun doTransitionWithShiwMoreLessBtn() {
