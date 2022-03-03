@@ -9,7 +9,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.LoginScreenFragment">
+        tools:context=".ui.fragments.LoginScreenFragment"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,7 +26,8 @@
                     android:layout_width="@dimen/_101sdp"
                     android:layout_height="@dimen/_107sdp"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_circle" />
+                    android:src="@drawable/ic_circle"
+                    android:contentDescription="@string/app_name" />
 
                 <ImageView
                     android:layout_width="@dimen/_27sdp"
@@ -33,7 +35,8 @@
                     android:src="@drawable/ic_language"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_margin="@dimen/_16sdp" />
+                    android:layout_margin="@dimen/_16sdp"
+                    android:contentDescription="@string/app_name"/>
 
                 <ImageView
                     android:layout_width="@dimen/_161sdp"
@@ -41,16 +44,17 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/_15sdp"
                     android:layout_marginRight="@dimen/_15sdp"
-                    android:src="@drawable/onyx_logo" />
+                    android:src="@drawable/onyx_logo"
+                    android:contentDescription="@string/app_name"/>
 
 
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/big_lin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_centerInParent="true"
                 android:layout_marginTop="@dimen/_110sdp">
 
                 <TextView
@@ -73,7 +77,90 @@
                     android:gravity="center"
                     android:layout_gravity="center_horizontal" />
 
-                <include layout="@layout/login_input_form" />
+<!--                <include -->
+<!--                    android:id="@+id/hidd_vv"-->
+<!--                    layout="@layout/login_input_form" />
+-->
+
+                <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/_17sdp">
+                <LinearLayout
+                    android:id="@+id/hidden_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    >
+                    <EditText
+                        android:id="@+id/edt_year"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_33sdp"
+                        android:background="@drawable/back_input_form"
+                        android:hint="Year"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/textColor"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp"
+                        android:layout_margin="@dimen/_4sdp"
+                        />
+
+                    <EditText
+                        android:id="@+id/edt_financial_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_33sdp"
+                        android:background="@drawable/back_input_form"
+                        android:hint="Financial Unit"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/textColor"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp"
+                        android:layout_margin="@dimen/_4sdp"
+                        />
+
+                    <EditText
+                        android:id="@+id/edt_branch_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_33sdp"
+                        android:background="@drawable/back_input_form"
+                        android:hint="Branch Number"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/textColor"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp"
+                        android:layout_margin="@dimen/_4sdp"
+                        />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_user_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_33sdp"
+                    android:background="@drawable/back_input_form"
+                    android:hint="User ID"
+                    android:textAlignment="center"
+                    android:textColorHint="@color/textColor"
+                    android:textColor="@color/textColor"
+                    android:textSize="20sp"
+                    android:layout_margin="@dimen/_4sdp"
+                    />
+
+                <EditText
+                    android:id="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_33sdp"
+                    android:background="@drawable/back_input_form"
+                    android:hint="Password"
+                    android:textAlignment="center"
+                    android:textColorHint="@color/textColor"
+                    android:textColor="@color/textColor"
+                    android:textSize="20sp"
+                    android:layout_margin="@dimen/_4sdp"
+                    android:inputType="textPassword"
+                    />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/show_more_less_btn"
