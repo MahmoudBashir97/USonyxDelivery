@@ -15,12 +15,9 @@ import androidx.navigation.fragment.findNavController
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentLoginScreenBinding
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
-import com.mahmoudbashir.onyxdelivery.pojo.ModelL
 import com.mahmoudbashir.onyxdelivery.pojo.Value
 import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
 import com.mahmoudbashir.onyxdelivery.viewModel.LoginViewModel
-import org.koin.android.ext.android.inject
-import kotlin.math.log
 
 
 class LoginScreenFragment : Fragment() {
@@ -56,7 +53,7 @@ class LoginScreenFragment : Fragment() {
             loginBtn.setOnClickListener {
                 if (validateFormsInput()){
 
-                 val  model = ModelL(
+                 val  model = LoginModel(
                      Value(
                          loginBinding.edtUserId.text.toString(), "1", loginBinding.edtPassword.text.toString()
                      )
