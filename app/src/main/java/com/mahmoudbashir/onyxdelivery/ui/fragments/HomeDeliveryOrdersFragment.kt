@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.mahmoudbashir.onyxdelivery.R
+import com.mahmoudbashir.onyxdelivery.adapters.BillsAdapter
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentHomeDeliveryOrdersBinding
 import com.mahmoudbashir.onyxdelivery.local.SharedPreference
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
@@ -21,6 +22,7 @@ class HomeDeliveryOrdersFragment : Fragment() {
 
     lateinit var deliveryBinding:FragmentHomeDeliveryOrdersBinding
     lateinit var ordersVM : OrdersViewModel
+    lateinit var billsAdapter: BillsAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -41,17 +43,49 @@ class HomeDeliveryOrdersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupDataToViews()
+        setUpRecyclerview()
+        getBillsItemList()
+    }
+
+    private fun getBillsItemList() {
+
         val model = LoginModel(
             Value(SharedPreference.getInastance(context).userId,
                 "1","")
         )
+
         ordersVM.getBillsItem(model)
+
         ordersVM.billsItem.observe(viewLifecycleOwner,{
-            response ->
-            if (response.Result.ErrNo == 0) {
-                Toast.makeText(context,"Data Received!! ", Toast.LENGTH_LONG).show()
+                response ->
+            when(response.Result.ErrNo){
+                0 ->{
+                    deliveryBinding.isLoaded = true
+                    billsAdapter.differ.submitList(response.Data.DeliveryBills)
+                }
+                1 -> {
+                    showErrorMessage("There is no data to display")
+                }
+                else ->{
+                    showErrorMessage("some error occurred!!")
+                }
+
             }
+
         })
+    }
+
+    private fun showErrorMessage(ErrMsg: String) {
+        Toast.makeText(context,ErrMsg,Toast.LENGTH_LONG).show()
+    }
+
+    private fun setUpRecyclerview(){
+        deliveryBinding.isLoaded = false
+        billsAdapter  = BillsAdapter()
+        deliveryBinding.recOrders.apply {
+            setHasFixedSize(true)
+            adapter = billsAdapter
+        }
     }
 
     private fun setupDataToViews() {

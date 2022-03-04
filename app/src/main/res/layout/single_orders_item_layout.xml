@@ -1,181 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="8dp"
-    android:background="@color/white"
-    android:layout_margin="@dimen/_5sdp"
-    android:elevation="10dp"
-    app:cardMaxElevation="10dp"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_91sdp"
+        android:layout_height="wrap_content"
         >
-
-        <TextView
-            android:id="@+id/bill_ser_txt"
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_15sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:text="#1569987"
-            android:textColor="@color/textTitleItemColor"
-            android:textSize="15sp" />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:background="@color/white"
+            android:layout_margin="15dp"
+            android:elevation="10dp"
+            app:cardMaxElevation="10dp"
+            android:layout_centerInParent="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_71sdp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/to_details_btn"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:weightSum="5">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Status"
-                    android:textColor="@color/textTitleItemColor"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/bill_status_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="New"
-                    android:textColor="@color/textItemColor"
-                    android:textSize="@dimen/_16sdp"
-                    android:textStyle="bold"
-
-                    />
-            </LinearLayout>
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_91sdp">
 
-                <View
-                    android:layout_width="0.7dp"
+                <TextView
+                    android:id="@+id/bill_ser_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="#1569987"
+                    android:textColor="@color/textTitleItemColor"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_71sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/to_details_btn"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status"
+                            android:textColor="@color/textTitleItemColor"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="normal" />
+
+                        <TextView
+                            android:id="@+id/bill_status_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="New"
+                            android:textColor="@color/textItemColor"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold"
+
+                            />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_weight="1">
+
+                        <View
+                            android:layout_width="0.7dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:background="@color/textTitleItemColor" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total price"
+                            android:textColor="@color/textTitleItemColor"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="normal" />
+
+                        <TextView
+                            android:id="@+id/bill_amount_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="400 LE"
+                            android:textColor="@color/welcomeColor"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold"
+
+                            />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_weight="1">
+
+                        <View
+                            android:layout_width="0.7dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:background="@color/textTitleItemColor" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date"
+                            android:textColor="@color/textTitleItemColor"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="normal" />
+
+                        <TextView
+                            android:id="@+id/bill_date_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="1/1/2020"
+                            android:textColor="@color/welcomeColor"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold"
+
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/to_details_btn"
+                    android:layout_width="@dimen/_44sdp"
                     android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:background="@color/textTitleItemColor" />
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/green_order_details">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/order_details_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Order Details"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_baseline_navigate_next_24"
+                        android:layout_centerInParent="true"
+                        android:layout_below="@+id/order_details_txt" />
+                </RelativeLayout>
+
             </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total price"
-                    android:textColor="@color/textTitleItemColor"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/bill_amount_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="400 LE"
-                    android:textColor="@color/welcomeColor"
-                    android:textSize="@dimen/_16sdp"
-                    android:textStyle="bold"
-
-                    />
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_weight="1">
-
-                <View
-                    android:layout_width="0.7dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:background="@color/textTitleItemColor" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textColor="@color/textTitleItemColor"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="normal" />
-
-                <TextView
-                    android:id="@+id/bill_date_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="1/1/2020"
-                    android:textColor="@color/welcomeColor"
-                    android:textSize="@dimen/_16sdp"
-                    android:textStyle="bold"
-
-                    />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/to_details_btn"
-            android:layout_width="@dimen/_44sdp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/green_order_details"
-            >
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                
-            </RelativeLayout>
-            <TextView
-                android:id="@+id/order_details_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Order Details"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:textColor="@color/white"
-                />
-            <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/ic_baseline_navigate_next_24"
-                android:layout_centerInParent="true"
-                android:layout_below="@+id/order_details_txt"/>
-        </RelativeLayout>
-
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</layout>

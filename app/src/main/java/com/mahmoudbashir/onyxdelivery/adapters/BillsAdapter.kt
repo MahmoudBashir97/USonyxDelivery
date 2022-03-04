@@ -7,13 +7,21 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmoudbashir.onyxdelivery.R
+import com.mahmoudbashir.onyxdelivery.databinding.SingleOrdersItemLayoutBinding
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
 
 class BillsAdapter : RecyclerView.Adapter<BillsAdapter.ViewHolder>(){
 
-    
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
+    inner class ViewHolder(private val binding:SingleOrdersItemLayoutBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind(item: DeliveryBill) {
+            with(binding) {
+                if (item.DLVRY_STATUS_FLG == "1") billStatusTxt.text ="New" else "Delivered"
+                billAmountTxt.text = item.BILL_AMT.trim('.')
+                billDateTxt.text = item.BILL_DATE
+                billSerTxt.text =item.BILL_SRL
+            }
+        }
     }
 
 
@@ -30,19 +38,15 @@ class BillsAdapter : RecyclerView.Adapter<BillsAdapter.ViewHolder>(){
     val differ = AsyncListDiffer(this,differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.single_orders_item_layout,
-            parent,
-            false)
-        )
+
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = SingleOrdersItemLayoutBinding.inflate(inflater)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.apply {
 
-        }
     }
 
     override fun getItemCount(): Int = differ.currentList.size
