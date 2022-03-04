@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeDeliveryOrdersFragment"
-        android:name="com.mahmoudbashir.onyxdelivery.HomeDeliveryOrdersFragment"
+        android:name="com.mahmoudbashir.onyxdelivery.ui.fragments.HomeDeliveryOrdersFragment"
         android:label="fragment_home_delivery_orders"
         tools:layout="@layout/fragment_home_delivery_orders" />
 </navigation>

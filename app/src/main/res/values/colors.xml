@@ -19,4 +19,9 @@
     <color name="inputsColor">#00000029</color>
     <color name="inputsFormColor">#F1F5FB</color>
 
+    <!-- Home Orders Screen -->
+    <color name="greenItemColor">#29D40F</color>
+    <color name="redItemColor">#D42A0F</color>
+    <color name="textItemColor">#29D40F</color>
+
 </resources>
