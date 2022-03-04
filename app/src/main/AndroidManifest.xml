@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mahmoudbashir.onyxdelivery">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".MyApp"
@@ -9,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.USTask">
+        android:theme="@style/Theme.USTask"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.activities.SplashScreenActivity"
             android:exported="true">

@@ -15,7 +15,7 @@ import org.koin.android.ext.android.inject
 class MainActivity : AppCompatActivity() {
 
     lateinit var mainBinding: ActivityMainBinding
-    val loginVM by inject<LoginViewModel>()
+    val loginVM  by inject<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

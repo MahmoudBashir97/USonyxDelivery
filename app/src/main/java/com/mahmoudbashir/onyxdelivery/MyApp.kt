@@ -13,10 +13,10 @@ class MyApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MyApp)
-            module {
-                dataModule
+            modules(
+                dataModule,
                 mainViewModel
-            }
+                )
         }
     }
 }

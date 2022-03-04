@@ -3,6 +3,7 @@ package com.mahmoudbashir.onyxdelivery.koin
 import com.mahmoudbashir.onyxdelivery.repository.DeliveryRepository
 import com.mahmoudbashir.onyxdelivery.repository.apiRepositoryInterface
 import com.mahmoudbashir.onyxdelivery.retrofit.ApiServiceInterface
+import com.mahmoudbashir.onyxdelivery.retrofit.RetrofitInstance
 import com.mahmoudbashir.onyxdelivery.utils.Constants
 import com.mahmoudbashir.onyxdelivery.viewModel.LoginViewModel
 import okhttp3.OkHttpClient
@@ -15,15 +16,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val dataModule = module {
 
-    single {
-        getRetrofitInstance()
-    }
+//    single {
+//        getRetrofitInstance()
+//    }
+//
+//    single {
+//        getApiInterface(get())
+//    }
 
-    single {
-        getApiInterface(get())
-    }
-
-    single<apiRepositoryInterface>{
+    single { RetrofitInstance() }
+    single{
         DeliveryRepository(get())
     }
 
