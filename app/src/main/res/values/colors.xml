@@ -27,5 +27,8 @@
     
     <!-- Order Details Scren-->
     <color name="bar_color_back">#D42A0F</color>
+    <color name="text_order_color">#C7C7C7</color>
+    <color name="text_order_color2">#808080</color>
+
 
 </resources>
