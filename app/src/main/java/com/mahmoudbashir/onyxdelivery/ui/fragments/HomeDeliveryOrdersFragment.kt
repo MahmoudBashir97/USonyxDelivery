@@ -14,6 +14,7 @@ import com.mahmoudbashir.onyxdelivery.databinding.FragmentHomeDeliveryOrdersBind
 import com.mahmoudbashir.onyxdelivery.local.SharedPreference
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
 import com.mahmoudbashir.onyxdelivery.pojo.Value
+import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
 import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
 import com.mahmoudbashir.onyxdelivery.viewModel.OrdersViewModel
 
@@ -24,6 +25,8 @@ class HomeDeliveryOrdersFragment : Fragment() {
     lateinit var ordersVM : OrdersViewModel
     lateinit var billsAdapter: BillsAdapter
 
+    lateinit var newBillsList:ArrayList<DeliveryBill>
+    lateinit var othersBillsList:ArrayList<DeliveryBill>
     override fun onAttach(context: Context) {
         super.onAttach(context)
         ordersVM = (activity as MainActivity).ordersVM
@@ -42,12 +45,15 @@ class HomeDeliveryOrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupDataToViews()
+
         setUpRecyclerview()
         getBillsItemList()
+        setupDataToViews()
     }
 
     private fun getBillsItemList() {
+        newBillsList = ArrayList()
+        othersBillsList = ArrayList()
         deliveryBinding.isLoaded = false
         val model = LoginModel(
             Value(SharedPreference.getInastance(context).userId,
@@ -62,7 +68,16 @@ class HomeDeliveryOrdersFragment : Fragment() {
 
                 0 ->{
                     deliveryBinding.isLoaded = true
-                    billsAdapter.differ.submitList(response.Data.DeliveryBills)
+                    newBillsList.clear()
+                    othersBillsList.clear()
+
+                    response.Data.DeliveryBills.forEach {
+                        if (it.DLVRY_STATUS_FLG == "1"){
+                            newBillsList.add(it)
+                        }else {
+                            othersBillsList.add(it)
+                        }
+                    }
                 }
                 1 -> {
                     deliveryBinding.isLoaded = false
@@ -94,6 +109,19 @@ class HomeDeliveryOrdersFragment : Fragment() {
     private fun setupDataToViews() {
         val name = SharedPreference.getInastance(context).deliveryName
         deliveryBinding.firstNameTxt.text = name
+
+        deliveryBinding.newRb.isChecked = true
+        if (deliveryBinding.newRb.isChecked) billsAdapter.differ.submitList(newBillsList)
+
+        deliveryBinding.rgBtns.setOnCheckedChangeListener { _, checkedId ->
+
+            if (checkedId == R.id.others_rb && othersBillsList.isNotEmpty()){
+                billsAdapter.differ.submitList(othersBillsList)
+            }else {
+                billsAdapter.differ.submitList(newBillsList)
+                deliveryBinding.recOrders.scrollToPosition(1)
+            }
+        }
     }
 
 }

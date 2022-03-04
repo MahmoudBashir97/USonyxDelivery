@@ -70,6 +70,7 @@
             </RelativeLayout>
 
             <RadioGroup
+                android:id="@+id/rg_btns"
                 android:layout_width="@dimen/_220sdp"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_gravity="center_horizontal"
@@ -100,7 +101,7 @@
                     android:text="Others"
                     android:textSize="18sp"
                     android:gravity="center"
-                    android:checked="true"
+                    android:checked="false"
                     android:background="@drawable/radio_flat_selector" />
 
             </RadioGroup>
