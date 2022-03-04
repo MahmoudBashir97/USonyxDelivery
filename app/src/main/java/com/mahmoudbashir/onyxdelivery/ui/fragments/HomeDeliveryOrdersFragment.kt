@@ -62,7 +62,7 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
         deliveryBinding.isLoaded = false
         val model = LoginModel(
             Value(SharedPreference.getInastance(context).userId,
-                "1","")
+                "1","","")
         )
 
         ordersVM.getBillsItem(model)
@@ -120,6 +120,7 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
 
         deliveryBinding.newRb.isChecked = true
         if (deliveryBinding.newRb.isChecked) billsAdapter.differ.submitList(newBillsList)
+        if (deliveryBinding.othersRb.isChecked) billsAdapter.differ.submitList(othersBillsList)
 
         deliveryBinding.rgBtns.setOnCheckedChangeListener { _, checkedId ->
 
@@ -133,7 +134,8 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
     }
 
     override fun onClick(position: Int, item: DeliveryBill) {
-        findNavController().navigate(HomeDeliveryOrdersFragmentDirections.actionHomeDeliveryOrdersFragmentToOrderDetailsFragment())
+        deliveryBinding.newRb.isChecked = true
+        findNavController().navigate(HomeDeliveryOrdersFragmentDirections.actionHomeDeliveryOrdersFragmentToOrderDetailsFragment(item))
     }
 
 }

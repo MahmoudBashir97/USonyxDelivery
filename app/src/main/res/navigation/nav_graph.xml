@@ -38,5 +38,11 @@
         android:id="@+id/orderDetailsFragment"
         android:name="com.mahmoudbashir.onyxdelivery.ui.fragments.OrderDetailsFragment"
         android:label="fragment_order_details"
-        tools:layout="@layout/fragment_order_details" />
+        tools:layout="@layout/fragment_order_details">
+
+        <argument
+            android:name="bill_item"
+            app:argType="com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill"
+            app:nullable="false"/>
+    </fragment>
 </navigation>

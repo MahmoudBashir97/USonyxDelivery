@@ -1,5 +1,7 @@
 package com.mahmoudbashir.onyxdelivery.pojo.billsModel
 
+import java.io.Serializable
+
 data class DeliveryBill(
     val BILL_AMT: String,
     val BILL_DATE: String,
@@ -19,4 +21,4 @@ data class DeliveryBill(
     val MOBILE_NO: String,
     val RGN_NM: String,
     val TAX_AMT: String
-)
+):Serializable

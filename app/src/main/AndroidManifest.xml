@@ -14,7 +14,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.activities.SplashScreenActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.MainActivity"/>
+            android:name=".ui.activities.MainActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

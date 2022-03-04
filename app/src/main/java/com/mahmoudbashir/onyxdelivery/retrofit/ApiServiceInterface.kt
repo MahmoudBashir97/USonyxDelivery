@@ -2,6 +2,7 @@ package com.mahmoudbashir.onyxdelivery.retrofit
 
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
 import com.mahmoudbashir.onyxdelivery.pojo.LoginResponseModel
+import com.mahmoudbashir.onyxdelivery.pojo.billsDetailsModel.BillsDetailsResponseModel
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.BillItemsModel
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.Response
@@ -15,5 +16,9 @@ interface ApiServiceInterface {
 
     @POST("OnyxDeliveryService/Service.svc/GetDeliveryBillsItems")
     fun GetBillsList(@Body loginModel: LoginModel):Observable<BillItemsModel>
+
+
+    @POST("OnyxDeliveryService/Service.svc/GetDeliveryBillsItems")
+    fun GetOrderDetails(@Body loginModel: LoginModel):Observable<BillsDetailsResponseModel>
 
 }

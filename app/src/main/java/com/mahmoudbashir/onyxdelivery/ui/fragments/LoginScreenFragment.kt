@@ -65,7 +65,7 @@ class LoginScreenFragment : Fragment() {
     private fun doLogin() {
         val  model = LoginModel(
             Value(
-                loginBinding.edtUserId.text.toString(), "1", loginBinding.edtPassword.text.toString()
+                loginBinding.edtUserId.text.toString(), "1", loginBinding.edtPassword.text.toString(),""
             )
         )
 
