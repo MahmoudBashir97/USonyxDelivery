@@ -78,6 +78,9 @@ class HomeDeliveryOrdersFragment : Fragment() {
                             othersBillsList.add(it)
                         }
                     }
+
+
+
                 }
                 1 -> {
                     deliveryBinding.isLoaded = false

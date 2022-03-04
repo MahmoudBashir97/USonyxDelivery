@@ -25,5 +25,14 @@
         android:id="@+id/homeDeliveryOrdersFragment"
         android:name="com.mahmoudbashir.onyxdelivery.ui.fragments.HomeDeliveryOrdersFragment"
         android:label="fragment_home_delivery_orders"
-        tools:layout="@layout/fragment_home_delivery_orders" />
+        tools:layout="@layout/fragment_home_delivery_orders" >
+        <action
+            android:id="@+id/action_homeDeliveryOrdersFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.mahmoudbashir.onyxdelivery.ui.fragments.OrderDetailsFragment"
+        android:label="fragment_order_details"
+        tools:layout="@layout/fragment_order_details" />
 </navigation>
