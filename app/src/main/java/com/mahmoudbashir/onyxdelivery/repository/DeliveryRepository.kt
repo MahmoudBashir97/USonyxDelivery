@@ -3,16 +3,16 @@ package com.mahmoudbashir.onyxdelivery.repository
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
 import com.mahmoudbashir.onyxdelivery.pojo.LoginResponseModel
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.BillItemsModel
+import com.mahmoudbashir.onyxdelivery.retrofit.ApiServiceInterface
 import com.mahmoudbashir.onyxdelivery.retrofit.RetrofitInstance
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.Response
 
-class DeliveryRepository(val retrofit:RetrofitInstance): apiRepositoryInterface{
+class DeliveryRepository(val apiService:ApiServiceInterface): apiRepositoryInterface{
     override suspend fun doLoginDelivery(loginModel: LoginModel): Response<LoginResponseModel>
-     = retrofit.api.LoginUser(loginModel)
+     = apiService.LoginUser(loginModel)
 
     override fun gettingBillsItem(loginModel: LoginModel): Observable<BillItemsModel>  =
-        retrofit.api.GetBillsList(loginModel)
-
+        apiService.GetBillsList(loginModel)
 
 }
