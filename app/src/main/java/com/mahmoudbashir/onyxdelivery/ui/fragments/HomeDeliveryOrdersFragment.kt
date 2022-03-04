@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.adapters.BillsAdapter
+import com.mahmoudbashir.onyxdelivery.adapters.ItemClickedInterface
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentHomeDeliveryOrdersBinding
 import com.mahmoudbashir.onyxdelivery.local.SharedPreference
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
@@ -19,7 +21,7 @@ import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
 import com.mahmoudbashir.onyxdelivery.viewModel.OrdersViewModel
 
 
-class HomeDeliveryOrdersFragment : Fragment() {
+class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
 
     lateinit var deliveryBinding:FragmentHomeDeliveryOrdersBinding
     lateinit var ordersVM : OrdersViewModel
@@ -102,7 +104,7 @@ class HomeDeliveryOrdersFragment : Fragment() {
 
     private fun setUpRecyclerview(){
         deliveryBinding.isLoaded = false
-        billsAdapter  = BillsAdapter(requireContext().applicationContext)
+        billsAdapter  = BillsAdapter(requireContext().applicationContext,this)
         deliveryBinding.recOrders.apply {
             setHasFixedSize(true)
             adapter = billsAdapter
@@ -125,6 +127,10 @@ class HomeDeliveryOrdersFragment : Fragment() {
                 deliveryBinding.recOrders.scrollToPosition(1)
             }
         }
+    }
+
+    override fun onClick(position: Int, item: DeliveryBill) {
+        findNavController().navigate(HomeDeliveryOrdersFragmentDirections.actionHomeDeliveryOrdersFragmentToOrderDetailsFragment())
     }
 
 }

@@ -14,7 +14,7 @@ import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.SingleOrdersItemLayoutBinding
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
 
-class BillsAdapter(val context:Context): RecyclerView.Adapter<BillsAdapter.ViewHolder>(){
+class BillsAdapter(val context:Context, val itemClickedInterface: ItemClickedInterface): RecyclerView.Adapter<BillsAdapter.ViewHolder>(){
 
 
     inner class ViewHolder(private val binding:SingleOrdersItemLayoutBinding) : RecyclerView.ViewHolder(binding.root){
@@ -51,7 +51,11 @@ class BillsAdapter(val context:Context): RecyclerView.Adapter<BillsAdapter.ViewH
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(differ.currentList[position])
+        val item = differ.currentList[position]
+        holder.bind(item)
+        holder.itemView.setOnClickListener {
+            itemClickedInterface.onClick(position,item)
+        }
     }
 
     override fun getItemCount(): Int = differ.currentList.size
