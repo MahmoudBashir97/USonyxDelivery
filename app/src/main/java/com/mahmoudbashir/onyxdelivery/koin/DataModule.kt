@@ -35,7 +35,11 @@ val dataModule = module {
 val mainViewModel = module {
     viewModel {
         LoginViewModel(androidApplication(),get())
-        OrdersViewModel(androidApplication())
+    }
+}
+val orderViewModel = module {
+    viewModel {
+        OrdersViewModel(androidApplication(),get())
     }
 }
 
