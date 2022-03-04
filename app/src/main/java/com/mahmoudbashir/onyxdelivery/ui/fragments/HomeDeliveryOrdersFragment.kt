@@ -48,7 +48,7 @@ class HomeDeliveryOrdersFragment : Fragment() {
     }
 
     private fun getBillsItemList() {
-
+        deliveryBinding.isLoaded = false
         val model = LoginModel(
             Value(SharedPreference.getInastance(context).userId,
                 "1","")
@@ -59,14 +59,17 @@ class HomeDeliveryOrdersFragment : Fragment() {
         ordersVM.billsItem.observe(viewLifecycleOwner,{
                 response ->
             when(response.Result.ErrNo){
+
                 0 ->{
                     deliveryBinding.isLoaded = true
                     billsAdapter.differ.submitList(response.Data.DeliveryBills)
                 }
                 1 -> {
+                    deliveryBinding.isLoaded = false
                     showErrorMessage("There is no data to display")
                 }
                 else ->{
+                    deliveryBinding.isLoaded = false
                     showErrorMessage("some error occurred!!")
                 }
 

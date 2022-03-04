@@ -1,6 +1,7 @@
 package com.mahmoudbashir.onyxdelivery.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
@@ -14,13 +15,18 @@ class OrdersViewModel(val app:Application,val repo :DeliveryRepository): Android
       val billsItem : MutableLiveData<BillItemsModel> = MutableLiveData()
 
     fun getBillsItem(model:LoginModel){
-        repo.gettingBillsItem(model).subscribeOn(
-            Schedulers.io()
-        ).observeOn(AndroidSchedulers.mainThread()
-        ).subscribe { response ->
-            if (response != null){
-                billsItem.postValue(response)
-            }
-        }
+
+        repo.gettingBillsItem(model)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { response ->
+                    if (response != null) billsItem.postValue(response)
+                },
+                { throwable ->
+
+                    Log.e("errorMessage: ", throwable.message ?: "onError")
+                }
+            )
     }
 }
