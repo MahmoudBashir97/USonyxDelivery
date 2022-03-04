@@ -73,7 +73,7 @@ class LoginScreenFragment : Fragment() {
         login_VM.loginStatusResponse.observe(viewLifecycleOwner,{response ->
             if (response != null && response.Result.ErrNo == 0){
                 findNavController().navigate(LoginScreenFragmentDirections.actionLoginScreenFragmentToHomeDeliveryOrdersFragment())
-                SharedPreference.getInastance(context).saveDeliveryInfo(response.Data.DeliveryName)
+                SharedPreference.getInastance(context).saveDeliveryInfo(response.Data.DeliveryName,loginBinding.edtUserId.text.toString())
             }else Toast.makeText(context,"please check your validate data ,or internet connection",Toast.LENGTH_LONG).show()
         })
     }

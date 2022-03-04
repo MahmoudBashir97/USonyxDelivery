@@ -6,6 +6,7 @@ import com.mahmoudbashir.onyxdelivery.retrofit.ApiServiceInterface
 import com.mahmoudbashir.onyxdelivery.retrofit.RetrofitInstance
 import com.mahmoudbashir.onyxdelivery.utils.Constants
 import com.mahmoudbashir.onyxdelivery.viewModel.LoginViewModel
+import com.mahmoudbashir.onyxdelivery.viewModel.OrdersViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
@@ -34,6 +35,7 @@ val dataModule = module {
 val mainViewModel = module {
     viewModel {
         LoginViewModel(androidApplication(),get())
+        OrdersViewModel(androidApplication())
     }
 }
 

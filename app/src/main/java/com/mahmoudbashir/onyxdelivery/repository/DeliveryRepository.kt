@@ -8,4 +8,6 @@ import retrofit2.Response
 class DeliveryRepository(val retrofit:RetrofitInstance): apiRepositoryInterface{
     override suspend fun doLoginDelivery(loginModel: LoginModel): Response<LoginResponseModel>
      = retrofit.api.LoginUser(loginModel)
+
+
 }

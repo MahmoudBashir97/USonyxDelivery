@@ -22,12 +22,13 @@ public class SharedPreference {
     }
 
 
-    public void saveDeliveryInfo(String deliveryName) {
+    public void saveDeliveryInfo(String deliveryName,String UserId) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //editor.clear();
         editor.putString("deliveryName", deliveryName);
+        editor.putString("UserId", UserId);
 
         editor.putBoolean("userLogged", true);
         editor.apply();
@@ -36,6 +37,11 @@ public class SharedPreference {
     public String getDeliveryName(){
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
         return sharedPreferences.getString("deliveryName", "");
+    }
+
+    public String getUserId(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_USER, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("UserId", "");
     }
 
     public boolean isLoggedIn() {

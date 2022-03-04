@@ -9,19 +9,19 @@ import androidx.databinding.DataBindingUtil
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentHomeDeliveryOrdersBinding
 import com.mahmoudbashir.onyxdelivery.local.SharedPreference
+import com.mahmoudbashir.onyxdelivery.viewModel.OrdersViewModel
 
 
 class HomeDeliveryOrdersFragment : Fragment() {
 
-
-
     lateinit var deliveryBinding:FragmentHomeDeliveryOrdersBinding
+    lateinit var ordersVM : OrdersViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         deliveryBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_home_delivery_orders, container, false)
 
         return deliveryBinding.root
