@@ -64,17 +64,17 @@ class BillsAdapter(val context:Context, val itemClickedInterface: ItemClickedInt
     private fun setUpSomeOperationOnViews(item: DeliveryBill,billStatusTxt: TextView, toDetailsBtn: RelativeLayout) {
         when(item.DLVRY_STATUS_FLG){
             "1"-> {
-                billStatusTxt.text ="New"
+                billStatusTxt.text = context.resources.getString(R.string.new_st)
                 billStatusTxt.setTextColor(ContextCompat.getColor(context,R.color.greenItemColor))
                 toDetailsBtn.setBackgroundResource(R.drawable.green_order_details)
             }
             "2" -> {
-                billStatusTxt.text ="Delivered"
+                billStatusTxt.text = context.resources.getString(R.string.delivered_st)
                 billStatusTxt.setTextColor(ContextCompat.getColor(context,R.color.redItemColor))
                 toDetailsBtn.setBackgroundResource(R.drawable.red_order_details)
             }
             else -> {
-                billStatusTxt.text ="Returned"
+                billStatusTxt.text = context.resources.getString(R.string.returned_st)
                 billStatusTxt.setTextColor(ContextCompat.getColor(context,R.color.welcomeColor))
                 toDetailsBtn.setBackgroundResource(R.drawable.dark_order_details)
             }

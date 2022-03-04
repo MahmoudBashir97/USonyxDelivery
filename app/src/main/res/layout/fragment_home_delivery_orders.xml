@@ -78,7 +78,8 @@
                 android:orientation="horizontal"
                 android:background="@drawable/radio_group_back"
                 android:elevation="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_10sdp">
+                android:layout_marginBottom="@dimen/_10sdp"
+                >
 
                 <RadioButton
                     android:id="@+id/new_rb"

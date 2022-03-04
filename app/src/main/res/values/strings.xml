@@ -2,4 +2,9 @@
     <string name="app_name">USTask</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- adapter -->
+    <string name="new_st">New</string>
+    <string name="delivered_st">Delivered</string>
+    <string name="returned_st">Returned</string>
 </resources>

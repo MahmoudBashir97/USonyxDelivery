@@ -28,7 +28,11 @@
         tools:layout="@layout/fragment_home_delivery_orders" >
         <action
             android:id="@+id/action_homeDeliveryOrdersFragment_to_orderDetailsFragment"
-            app:destination="@id/orderDetailsFragment" />
+            app:destination="@id/orderDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/orderDetailsFragment"
