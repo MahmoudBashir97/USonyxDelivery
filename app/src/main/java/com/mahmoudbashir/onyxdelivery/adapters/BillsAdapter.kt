@@ -1,8 +1,12 @@
 package com.mahmoudbashir.onyxdelivery.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,16 +14,18 @@ import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.SingleOrdersItemLayoutBinding
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
 
-class BillsAdapter : RecyclerView.Adapter<BillsAdapter.ViewHolder>(){
+class BillsAdapter(val context:Context): RecyclerView.Adapter<BillsAdapter.ViewHolder>(){
 
 
     inner class ViewHolder(private val binding:SingleOrdersItemLayoutBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: DeliveryBill) {
             with(binding) {
-                if (item.DLVRY_STATUS_FLG == "1") billStatusTxt.text ="New" else "Delivered"
-                billAmountTxt.text = item.BILL_AMT.trim('.')
+
+                setUpSomeOperationOnViews(item,billStatusTxt,toDetailsBtn)
+
+                billAmountTxt.text = item.BILL_AMT.split(".")[0]
                 billDateTxt.text = item.BILL_DATE
-                billSerTxt.text =item.BILL_SRL
+                billSerTxt.text ="#${item.BILL_SRL}"
             }
         }
     }
@@ -45,9 +51,29 @@ class BillsAdapter : RecyclerView.Adapter<BillsAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-
+        holder.bind(differ.currentList[position])
     }
 
     override fun getItemCount(): Int = differ.currentList.size
+
+
+    private fun setUpSomeOperationOnViews(item: DeliveryBill,billStatusTxt: TextView, toDetailsBtn: RelativeLayout) {
+        when(item.DLVRY_STATUS_FLG){
+            "1"-> {
+                billStatusTxt.text ="New"
+                billStatusTxt.setTextColor(ContextCompat.getColor(context,R.color.greenItemColor))
+                toDetailsBtn.setBackgroundResource(R.drawable.green_order_details)
+            }
+            "2" -> {
+                billStatusTxt.text ="Delivered"
+                billStatusTxt.setTextColor(ContextCompat.getColor(context,R.color.redItemColor))
+                toDetailsBtn.setBackgroundResource(R.drawable.red_order_details)
+            }
+            else -> {
+                billStatusTxt.text ="Returned"
+                billStatusTxt.setTextColor(ContextCompat.getColor(context,R.color.welcomeColor))
+                toDetailsBtn.setBackgroundResource(R.drawable.dark_order_details)
+            }
+        }
+    }
 }

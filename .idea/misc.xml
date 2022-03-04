@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/USTask/app/src/main/res/drawable/back_input_form.xml" value="0.18009259259259258" />
+        <entry key="..\:/Android/USTask/app/src/main/res/drawable/dark_order_details.xml" value="0.18009259259259258" />
         <entry key="..\:/Android/USTask/app/src/main/res/drawable/green_order_details.xml" value="0.18009259259259258" />
         <entry key="..\:/Android/USTask/app/src/main/res/drawable/login_btn_back.xml" value="0.18009259259259258" />
         <entry key="..\:/Android/USTask/app/src/main/res/drawable/orders_bar_back.xml" value="0.18009259259259258" />
@@ -11,6 +12,7 @@
         <entry key="..\:/Android/USTask/app/src/main/res/drawable/radio_flat_selector.xml" value="0.18009259259259258" />
         <entry key="..\:/Android/USTask/app/src/main/res/drawable/radio_flat_text_selector.xml" value="0.18009259259259258" />
         <entry key="..\:/Android/USTask/app/src/main/res/drawable/radio_group_back.xml" value="0.18009259259259258" />
+        <entry key="..\:/Android/USTask/app/src/main/res/drawable/red_order_details.xml" value="0.18009259259259258" />
         <entry key="..\:/Android/USTask/app/src/main/res/layout/activity_main.xml" value="0.18645833333333334" />
         <entry key="..\:/Android/USTask/app/src/main/res/layout/activity_splash_screen.xml" value="0.17239583333333333" />
         <entry key="..\:/Android/USTask/app/src/main/res/layout/empty_orders_layout.xml" value="0.25" />

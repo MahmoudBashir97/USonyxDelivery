@@ -81,7 +81,7 @@ class HomeDeliveryOrdersFragment : Fragment() {
 
     private fun setUpRecyclerview(){
         deliveryBinding.isLoaded = false
-        billsAdapter  = BillsAdapter()
+        billsAdapter  = BillsAdapter(requireContext().applicationContext)
         deliveryBinding.recOrders.apply {
             setHasFixedSize(true)
             adapter = billsAdapter
