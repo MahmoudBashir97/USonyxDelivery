@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.SingleOrdersItemLayoutBinding
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
+import com.mahmoudbashir.onyxdelivery.ui.common.CheckDeliveryStatusFlagClass
 
 class BillsAdapter(val context:Context, val itemClickedInterface: ItemClickedInterface): RecyclerView.Adapter<BillsAdapter.ViewHolder>(){
 
@@ -21,7 +22,7 @@ class BillsAdapter(val context:Context, val itemClickedInterface: ItemClickedInt
         fun bind(item: DeliveryBill) {
             with(binding) {
 
-                setUpSomeOperationOnViews(item,billStatusTxt,toDetailsBtn)
+                CheckDeliveryStatusFlagClass.setUpSomeOperationOnViews(context,item,billStatusTxt,toDetailsBtn)
 
                 billAmountTxt.text = item.BILL_AMT.split(".")[0]
                 billDateTxt.text = item.BILL_DATE
@@ -59,25 +60,4 @@ class BillsAdapter(val context:Context, val itemClickedInterface: ItemClickedInt
     }
 
     override fun getItemCount(): Int = differ.currentList.size
-
-
-    private fun setUpSomeOperationOnViews(item: DeliveryBill,billStatusTxt: TextView, toDetailsBtn: RelativeLayout) {
-        when(item.DLVRY_STATUS_FLG){
-            "1"-> {
-                billStatusTxt.text = context.resources.getString(R.string.new_st)
-                billStatusTxt.setTextColor(ContextCompat.getColor(context,R.color.greenItemColor))
-                toDetailsBtn.setBackgroundResource(R.drawable.green_order_details)
-            }
-            "2" -> {
-                billStatusTxt.text = context.resources.getString(R.string.delivered_st)
-                billStatusTxt.setTextColor(ContextCompat.getColor(context,R.color.redItemColor))
-                toDetailsBtn.setBackgroundResource(R.drawable.red_order_details)
-            }
-            else -> {
-                billStatusTxt.text = context.resources.getString(R.string.returned_st)
-                billStatusTxt.setTextColor(ContextCompat.getColor(context,R.color.welcomeColor))
-                toDetailsBtn.setBackgroundResource(R.drawable.dark_order_details)
-            }
-        }
-    }
 }
