@@ -9,10 +9,14 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.ActivityMainBinding
+import com.mahmoudbashir.onyxdelivery.viewModel.LoginViewModel
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var mainBinding: ActivityMainBinding
+    val loginVM by inject<LoginViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = ContextCompat.getColor(this,R.color.inputsColor)

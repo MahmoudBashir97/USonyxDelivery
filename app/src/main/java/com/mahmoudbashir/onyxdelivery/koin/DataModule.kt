@@ -4,8 +4,11 @@ import com.mahmoudbashir.onyxdelivery.repository.DeliveryRepository
 import com.mahmoudbashir.onyxdelivery.repository.apiRepositoryInterface
 import com.mahmoudbashir.onyxdelivery.retrofit.ApiServiceInterface
 import com.mahmoudbashir.onyxdelivery.utils.Constants
+import com.mahmoudbashir.onyxdelivery.viewModel.LoginViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,6 +27,12 @@ val dataModule = module {
         DeliveryRepository(get())
     }
 
+}
+
+val mainViewModel = module {
+    viewModel {
+        LoginViewModel(androidApplication(),get())
+    }
 }
 
 fun getRetrofitInstance():Retrofit{

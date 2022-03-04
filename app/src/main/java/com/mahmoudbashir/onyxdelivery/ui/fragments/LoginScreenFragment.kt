@@ -1,6 +1,7 @@
 package com.mahmoudbashir.onyxdelivery.ui.fragments
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.transition.AutoTransition
 import android.transition.TransitionManager
 import androidx.fragment.app.Fragment
@@ -11,11 +12,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentLoginScreenBinding
+import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
+import com.mahmoudbashir.onyxdelivery.viewModel.LoginViewModel
+import org.koin.android.ext.android.inject
 import kotlin.math.log
 
 
 class LoginScreenFragment : Fragment() {
     lateinit var loginBinding : FragmentLoginScreenBinding
+    val loginVM by inject<LoginViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,9 +43,26 @@ class LoginScreenFragment : Fragment() {
     private fun navigateToHomeScreen() {
         loginBinding.apply {
             loginBtn.setOnClickListener {
+                if (validateFormsInput())
                 findNavController().navigate(LoginScreenFragmentDirections.actionLoginScreenFragmentToHomeDeliveryOrdersFragment())
             }
         }
+    }
+
+    private fun validateFormsInput():Boolean{
+        val userId = loginBinding.edtUserId.text.toString()
+        val userPassword = loginBinding.edtPassword.text.toString()
+        if (TextUtils.isEmpty(userId)){
+            loginBinding.edtUserId.error = "Please Enter a valid input"
+            loginBinding.edtUserId.requestFocus()
+            return false
+        }else if (TextUtils.isEmpty(userPassword)){
+            loginBinding.edtPassword.error = "Please Enter a valid input"
+            loginBinding.edtPassword.requestFocus()
+            return false
+        }
+
+        return true
     }
 
     private fun doTransitionWithShiwMoreLessBtn() {
