@@ -1,20 +1,15 @@
 package com.mahmoudbashir.onyxdelivery.ui.fragments
 
 import android.os.Bundle
-import android.transition.AutoTransition
-import android.transition.TransitionManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentOrderDetailsBinding
+import com.mahmoudbashir.onyxdelivery.ui.common.TransitionClass
 
 
 class OrderDetailsFragment : Fragment() {
@@ -41,31 +36,14 @@ class OrderDetailsFragment : Fragment() {
     private fun workOnTransitionForViews() {
         detailsBinding.apply {
             relCutomerDetails.setOnClickListener {
-                doCommonTransition(customerDetailsLin,upDownBtn,bigLin)
+                TransitionClass.doTransition(customerDetailsLin,upDownBtn,bigLin)
             }
             relOrderDetails.setOnClickListener {
-                doCommonTransition(orderDetailsLin,orderDetailsUpDownBtn,bigLin)
+                TransitionClass.doTransition(orderDetailsLin,orderDetailsUpDownBtn,bigLin)
             }
             relOrderLocation.setOnClickListener {
-                doCommonTransition(orderLocationLin,orderLocationUpDownBtn,bigLin)
+                TransitionClass.doTransition(orderLocationLin,orderLocationUpDownBtn,bigLin)
             }
-        }
-    }
-
-    private fun doCommonTransition(hiddenView: LinearLayout, upDownBtn: ImageView, bigLin: LinearLayout) {
-        if (hiddenView.visibility == View.VISIBLE){
-
-            TransitionManager.beginDelayedTransition(bigLin,
-                AutoTransition()
-            )
-            hiddenView.visibility = View.GONE
-            upDownBtn.setImageResource(R.drawable.ic_listdown)
-        }else{
-            TransitionManager.beginDelayedTransition(bigLin,
-                AutoTransition()
-            )
-            hiddenView.visibility = View.VISIBLE
-            upDownBtn.setImageResource(R.drawable.ic_listup)
         }
     }
 
