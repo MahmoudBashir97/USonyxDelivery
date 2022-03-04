@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentHomeDeliveryOrdersBinding
+import com.mahmoudbashir.onyxdelivery.local.SharedPreference
 
 
 class HomeDeliveryOrdersFragment : Fragment() {
 
+
+
     lateinit var deliveryBinding:FragmentHomeDeliveryOrdersBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,6 +30,12 @@ class HomeDeliveryOrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupDataToViews()
+    }
+
+    private fun setupDataToViews() {
+        val name = SharedPreference.getInastance(context).deliveryName
+        deliveryBinding.firstNameTxt.text = name
     }
 
 }

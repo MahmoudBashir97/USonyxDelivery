@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentLoginScreenBinding
+import com.mahmoudbashir.onyxdelivery.local.SharedPreference
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
 import com.mahmoudbashir.onyxdelivery.pojo.Value
 import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
@@ -28,13 +29,16 @@ class LoginScreenFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
        login_VM = (activity as MainActivity).loginVM
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        if (SharedPreference.getInastance(context).isLoggedIn){
+            findNavController().navigate(LoginScreenFragmentDirections.actionLoginScreenFragmentToHomeDeliveryOrdersFragment())
+        }
         loginBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_login_screen, container, false)
 
 
@@ -52,21 +56,26 @@ class LoginScreenFragment : Fragment() {
         loginBinding.apply {
             loginBtn.setOnClickListener {
                 if (validateFormsInput()){
-
-                 val  model = LoginModel(
-                     Value(
-                         loginBinding.edtUserId.text.toString(), "1", loginBinding.edtPassword.text.toString()
-                     )
-                 )
-                login_VM.doLoginDelivery(model)
-                    login_VM.loginStatusResponse.observe(viewLifecycleOwner,{response ->
-                        if (response != null && response.Result.ErrNo == 0){
-                            findNavController().navigate(LoginScreenFragmentDirections.actionLoginScreenFragmentToHomeDeliveryOrdersFragment())
-                        }else Toast.makeText(context,"please check your validate data ,or internet connection",Toast.LENGTH_LONG).show()
-                    })
-            }
+                    doLogin()
+                }
             }
         }
+    }
+
+    private fun doLogin() {
+        val  model = LoginModel(
+            Value(
+                loginBinding.edtUserId.text.toString(), "1", loginBinding.edtPassword.text.toString()
+            )
+        )
+
+        login_VM.doLoginDelivery(model)
+        login_VM.loginStatusResponse.observe(viewLifecycleOwner,{response ->
+            if (response != null && response.Result.ErrNo == 0){
+                findNavController().navigate(LoginScreenFragmentDirections.actionLoginScreenFragmentToHomeDeliveryOrdersFragment())
+                SharedPreference.getInastance(context).saveDeliveryInfo(response.Data.DeliveryName)
+            }else Toast.makeText(context,"please check your validate data ,or internet connection",Toast.LENGTH_LONG).show()
+        })
     }
 
     private fun validateFormsInput():Boolean{
