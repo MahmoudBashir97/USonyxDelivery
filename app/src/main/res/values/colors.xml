@@ -23,5 +23,6 @@
     <color name="greenItemColor">#29D40F</color>
     <color name="redItemColor">#D42A0F</color>
     <color name="textItemColor">#29D40F</color>
+    <color name="textTitleItemColor">#808080</color>
 
 </resources>

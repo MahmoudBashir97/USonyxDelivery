@@ -5,18 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.mahmoudbashir.onyxdelivery.R
+import com.mahmoudbashir.onyxdelivery.databinding.FragmentHomeDeliveryOrdersBinding
 
 
 class HomeDeliveryOrdersFragment : Fragment() {
 
-
+    lateinit var deliveryBinding:FragmentHomeDeliveryOrdersBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_delivery_orders, container, false)
+        deliveryBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_home_delivery_orders, container, false)
+
+        return deliveryBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
 }
