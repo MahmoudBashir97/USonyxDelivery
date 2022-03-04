@@ -29,6 +29,9 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
 
     lateinit var newBillsList:ArrayList<DeliveryBill>
     lateinit var othersBillsList:ArrayList<DeliveryBill>
+
+
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         ordersVM = (activity as MainActivity).ordersVM
