@@ -19,12 +19,13 @@ import com.mahmoudbashir.onyxdelivery.pojo.Value
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
 import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
 import com.mahmoudbashir.onyxdelivery.viewModel.OrdersViewModel
+import org.koin.android.ext.android.inject
 
 
 class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
 
     lateinit var deliveryBinding:FragmentHomeDeliveryOrdersBinding
-    lateinit var ordersVM : OrdersViewModel
+    private val ordersVM by inject<OrdersViewModel>()
     lateinit var billsAdapter: BillsAdapter
 
     lateinit var newBillsList:ArrayList<DeliveryBill>
@@ -34,7 +35,7 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        ordersVM = (activity as MainActivity).ordersVM
+     //   ordersVM = (activity as MainActivity).ordersVM
     }
 
     override fun onCreateView(
