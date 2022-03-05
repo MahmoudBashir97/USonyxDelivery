@@ -112,6 +112,8 @@ class OrderDetailsFragment : Fragment() {
             orderNoTxt.text = item?.BILL_NO
             orderDate.text = item?.BILL_DATE
             payOptionTxt.text = "Cash on Delivery"
+            deliveryTxt.text = item?.DLVRY_AMT
+            taxesTxt.text = item?.TAX_AMT?.split(".")?.get(0) ?: ""
 
             locationAddressTxt.text = "${item?.CSTMR_BUILD_NO} , ${item?.RGN_NM} , ${item?.CSTMR_ADDRSS}"
             locationPhoneTxt.text = item?.MOBILE_NO
