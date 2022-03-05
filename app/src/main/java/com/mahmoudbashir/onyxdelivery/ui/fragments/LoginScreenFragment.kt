@@ -27,11 +27,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 
 class LoginScreenFragment : Fragment() {
     lateinit var loginBinding : FragmentLoginScreenBinding
-    lateinit var login_VM : LoginViewModel
+    val login_VM by inject<LoginViewModel>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
