@@ -18,6 +18,7 @@ import com.mahmoudbashir.onyxdelivery.ui.common.CheckDeliveryStatusFlagClass
 class BillsAdapter(val context:Context, val itemClickedInterface: ItemClickedInterface): RecyclerView.Adapter<BillsAdapter.ViewHolder>(){
 
 
+    //here we applying dataBinding on its SingleOrderItemLayout.xml and attaching passed data to its views
     inner class ViewHolder(private val binding:SingleOrdersItemLayoutBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: DeliveryBill) {
             with(binding) {

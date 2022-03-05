@@ -23,7 +23,7 @@ class OrderDetailsAdapter : RecyclerView.Adapter<OrderDetailsAdapter.OrderViewHo
 
     val differ = AsyncListDiffer(this,differCallback)
 
-
+    //here we applying dataBinding on its SingleOrderItemLayout.xml and attaching passed data to its views
     inner class OrderViewHolder(private val binding: SingleOrderPriceDetailsItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item:DeliveryBillItem){
             with(binding){

@@ -61,6 +61,7 @@ class OrderDetailsFragment : Fragment() {
         observingOnOrderDetails()
     }
 
+    // here we do initialization for recyclerview and attaching its Adapter
     private fun setUpRecyclerView() {
         detailsBinding.recOrderDetails.apply {
             setHasFixedSize(true)
@@ -68,6 +69,8 @@ class OrderDetailsFragment : Fragment() {
         }
     }
 
+    // todo here we observing on coming ordersDetails data by passing in url body a model
+    //  with UserID , P_LANG_NO , BILL_SRL , so we receive a response data with details.
     private fun observingOnOrderDetails() {
         val model = DeliveryModel(
             Value(
@@ -104,6 +107,7 @@ class OrderDetailsFragment : Fragment() {
         Toast.makeText(context,message,Toast.LENGTH_LONG).show()
     }
 
+    // todo this single fun to attach data to view (display it)
     private fun setUpDataToViews() {
         detailsBinding.apply {
 
@@ -120,6 +124,7 @@ class OrderDetailsFragment : Fragment() {
         }
     }
 
+    //todo here i'm applying required transition with using single class as we can apply SOLID [S]
     private fun workOnTransitionForViews() {
         detailsBinding.apply {
             relCutomerDetails.setOnClickListener {
@@ -134,6 +139,7 @@ class OrderDetailsFragment : Fragment() {
         }
     }
 
+    // after clicking on backBtn , so you should back to previous screen (do navigateUp)
     private fun backToPrevScreen() {
         detailsBinding.apply {
             backBtn.setOnClickListener {

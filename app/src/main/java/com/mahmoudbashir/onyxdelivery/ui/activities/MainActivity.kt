@@ -17,13 +17,11 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mainBinding: ActivityMainBinding
 
-    val loginVM  by inject<LoginViewModel>()
-    val ordersVM by inject<OrdersViewModel>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = ContextCompat.getColor(this,R.color.inputsColor)
 
+        // this is a depracated but i've used it for make all screen to be full under status bar ...
         window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
 

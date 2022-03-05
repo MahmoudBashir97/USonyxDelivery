@@ -35,8 +35,7 @@ class LoginScreenFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-       login_VM = (activity as MainActivity).loginVM
-
+       //login_VM = (activity as MainActivity).loginVM
     }
 
     override fun onCreateView(
@@ -59,6 +58,7 @@ class LoginScreenFragment : Fragment() {
        navigateToHomeScreen()
     }
 
+    // todo here we navigate to home after enter required inputs and validate on them,
     private fun navigateToHomeScreen() {
         loginBinding.apply {
             loginBtn.setOnClickListener {
@@ -124,6 +124,7 @@ class LoginScreenFragment : Fragment() {
         return true
     }
 
+    // here we apply transition on inputs form that required in ui/ux design
     private fun doTransitionWithShowMoreLessBtn() {
         loginBinding.apply {
             showMoreLessBtn.setOnClickListener {

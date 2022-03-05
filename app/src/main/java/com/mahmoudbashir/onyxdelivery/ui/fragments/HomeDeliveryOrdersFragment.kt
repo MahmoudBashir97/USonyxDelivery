@@ -57,6 +57,7 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
         setupDataToViews()
     }
 
+    //todo here we get(and observing on coming data to be attached to views ) ordersList (Bills) and display it to views .
     private fun getBillsItemList() {
         newBillsList = ArrayList()
         othersBillsList = ArrayList()
@@ -106,6 +107,7 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
         Toast.makeText(context,ErrMsg,Toast.LENGTH_LONG).show()
     }
 
+    //here we do initialization for recyclerview and set its Adapter.
     private fun setUpRecyclerview(){
         deliveryBinding.isLoaded = false
         billsAdapter  = BillsAdapter(requireContext().applicationContext,this)
@@ -115,6 +117,7 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
         }
     }
 
+    //todo here we handle diplaying data by using RadioGroup Button to select which list should be attach New or Others
     private fun setupDataToViews() {
         val name = SharedPreference.getInastance(context).deliveryName
         deliveryBinding.firstNameTxt.text = name
@@ -134,6 +137,7 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
         }
     }
 
+    // todo listen on Item clicked to navigate to OrderScreenDetailsFragment with passing item data(model).
     override fun onClick(position: Int, item: DeliveryBill) {
         deliveryBinding.newRb.isChecked = true
         findNavController().navigate(HomeDeliveryOrdersFragmentDirections.actionHomeDeliveryOrdersFragmentToOrderDetailsFragment(item))
