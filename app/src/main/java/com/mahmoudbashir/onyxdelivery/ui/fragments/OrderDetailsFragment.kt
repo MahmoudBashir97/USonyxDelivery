@@ -6,19 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentOrderDetailsBinding
+import com.mahmoudbashir.onyxdelivery.local.SharedPreference
+import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
+import com.mahmoudbashir.onyxdelivery.pojo.Value
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
+import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
 import com.mahmoudbashir.onyxdelivery.ui.common.TransitionClass
+import com.mahmoudbashir.onyxdelivery.viewModel.OrdersViewModel
 
 
 class OrderDetailsFragment : Fragment() {
 
     lateinit var detailsBinding: FragmentOrderDetailsBinding
+    lateinit var orderVM : OrdersViewModel
 
     val args:OrderDetailsFragmentArgs by navArgs()
     var item: DeliveryBill? = null
@@ -26,6 +32,7 @@ class OrderDetailsFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
+        orderVM = (activity as MainActivity).ordersVM
         item = args.billItem
 
     }
@@ -43,9 +50,53 @@ class OrderDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpRecyclerView()
         backToPrevScreen()
         workOnTransitionForViews()
         setUpDataToViews()
+        observingOnOrderDetails()
+    }
+
+    private fun setUpRecyclerView() {
+
+        detailsBinding.recOrderDetails.apply {
+            setHasFixedSize(true)
+
+        }
+    }
+
+    private fun observingOnOrderDetails() {
+        val model = LoginModel(
+            Value(
+                SharedPreference.getInastance(context).userId,
+                "1",
+                "",
+                item?.BILL_SRL.toString()
+            )
+        )
+
+        orderVM.getBillsItem(model)
+        orderVM.billsDetailsItem.observe(viewLifecycleOwner,{
+            responseModel ->
+            when(responseModel.Result.ErrNo){
+
+                0 ->{
+
+                }
+                1 -> {
+
+                    showErrorMessage("There is no data to display")
+                }
+                else ->{
+
+                    showErrorMessage("some error occurred!!")
+                }
+            }
+        })
+    }
+
+    private fun showErrorMessage(message: String) {
+        Toast.makeText(context,message,Toast.LENGTH_LONG).show()
     }
 
     private fun setUpDataToViews() {
