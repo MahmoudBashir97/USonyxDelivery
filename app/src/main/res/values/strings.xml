@@ -3,6 +3,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <!-- LoginScreen -->
+    <string name="show_more_st">Show More</string>
+    <string name="show_less_st">Show Less</string>
+
     <!-- adapter -->
     <string name="new_st">New</string>
     <string name="delivered_st">Delivered</string>

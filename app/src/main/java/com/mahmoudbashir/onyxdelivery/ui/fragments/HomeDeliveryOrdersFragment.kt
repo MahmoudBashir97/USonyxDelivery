@@ -14,7 +14,7 @@ import com.mahmoudbashir.onyxdelivery.adapters.BillsAdapter
 import com.mahmoudbashir.onyxdelivery.adapters.ItemClickedInterface
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentHomeDeliveryOrdersBinding
 import com.mahmoudbashir.onyxdelivery.local.SharedPreference
-import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
+import com.mahmoudbashir.onyxdelivery.pojo.DeliveryModel
 import com.mahmoudbashir.onyxdelivery.pojo.Value
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
 import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
@@ -60,7 +60,7 @@ class HomeDeliveryOrdersFragment : Fragment() ,ItemClickedInterface{
         newBillsList = ArrayList()
         othersBillsList = ArrayList()
         deliveryBinding.isLoaded = false
-        val model = LoginModel(
+        val model = DeliveryModel(
             Value(SharedPreference.getInastance(context).userId,
                 "1","","")
         )

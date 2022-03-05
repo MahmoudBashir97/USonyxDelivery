@@ -1,5 +1,5 @@
 package com.mahmoudbashir.onyxdelivery.pojo
 
-data class LoginModel (
+data class DeliveryModel (
     val Value: Value
     )

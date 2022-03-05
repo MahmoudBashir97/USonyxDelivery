@@ -15,10 +15,9 @@ import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.adapters.OrderDetailsAdapter
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentOrderDetailsBinding
 import com.mahmoudbashir.onyxdelivery.local.SharedPreference
-import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
+import com.mahmoudbashir.onyxdelivery.pojo.DeliveryModel
 import com.mahmoudbashir.onyxdelivery.pojo.Value
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
-import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
 import com.mahmoudbashir.onyxdelivery.ui.common.TransitionClass
 import com.mahmoudbashir.onyxdelivery.viewModel.OrderDetailsViewModel
 import org.koin.android.ext.android.inject
@@ -70,7 +69,7 @@ class OrderDetailsFragment : Fragment() {
     }
 
     private fun observingOnOrderDetails() {
-        val model = LoginModel(
+        val model = DeliveryModel(
             Value(
                 SharedPreference.getInastance(context).userId,
                 "1",
@@ -90,11 +89,11 @@ class OrderDetailsFragment : Fragment() {
                     orderDetailsAdapter.differ.submitList(responseModel.Data.DeliveryBillItems)
                 }
                 1 -> {
-
+                    showErrorMessage(responseModel.Result.ErrMsg)
                     showErrorMessage("There is no data to display")
                 }
                 else ->{
-
+                    showErrorMessage(responseModel.Result.ErrMsg)
                     showErrorMessage("some error occurred!!")
                 }
             }

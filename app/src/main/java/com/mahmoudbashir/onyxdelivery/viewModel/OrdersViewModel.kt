@@ -4,8 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
-import com.mahmoudbashir.onyxdelivery.pojo.billsDetailsModel.BillsDetailsResponseModel
+import com.mahmoudbashir.onyxdelivery.pojo.DeliveryModel
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.BillItemsModel
 import com.mahmoudbashir.onyxdelivery.repository.DeliveryRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -16,7 +15,7 @@ class OrdersViewModel(val app:Application,val repo :DeliveryRepository): Android
       val billsItem : MutableLiveData<BillItemsModel> = MutableLiveData()
 
 
-    fun getBillsItem(model:LoginModel){
+    fun getBillsItem(model:DeliveryModel){
 
         repo.gettingBillsItem(model)
             .subscribeOn(Schedulers.io())

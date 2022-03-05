@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.transition.AutoTransition
 import android.transition.TransitionManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,17 +16,24 @@ import androidx.navigation.fragment.findNavController
 import com.mahmoudbashir.onyxdelivery.R
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentLoginScreenBinding
 import com.mahmoudbashir.onyxdelivery.local.SharedPreference
-import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
+import com.mahmoudbashir.onyxdelivery.pojo.DeliveryModel
 import com.mahmoudbashir.onyxdelivery.pojo.Value
 import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
+import com.mahmoudbashir.onyxdelivery.utils.Resource
 import com.mahmoudbashir.onyxdelivery.viewModel.LoginViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class LoginScreenFragment : Fragment() {
     lateinit var loginBinding : FragmentLoginScreenBinding
     lateinit var login_VM : LoginViewModel
 
-
+    var isLogged = false
     override fun onAttach(context: Context) {
         super.onAttach(context)
        login_VM = (activity as MainActivity).loginVM
@@ -63,19 +71,38 @@ class LoginScreenFragment : Fragment() {
     }
 
     private fun doLogin() {
-        val  model = LoginModel(
+        val  model = DeliveryModel(
             Value(
                 loginBinding.edtUserId.text.toString(), "1", loginBinding.edtPassword.text.toString(),""
             )
         )
 
-        login_VM.doLoginDelivery(model)
-        login_VM.loginStatusResponse.observe(viewLifecycleOwner,{response ->
-            if (response != null && response.Result.ErrNo == 0){
-                findNavController().navigate(LoginScreenFragmentDirections.actionLoginScreenFragmentToHomeDeliveryOrdersFragment())
-                SharedPreference.getInastance(context).saveDeliveryInfo(response.Data.DeliveryName,loginBinding.edtUserId.text.toString())
-            }else Toast.makeText(context,"please check your validate data ,or internet connection",Toast.LENGTH_LONG).show()
-        })
+        login_VM.doLoginDelivery(model).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { response ->
+                    when(response.Result.ErrNo){
+                        0 -> {
+                            Log.d("loginStatus : ","Logged in ")
+                            findNavController().navigate(LoginScreenFragmentDirections.actionLoginScreenFragmentToHomeDeliveryOrdersFragment())
+                            SharedPreference.getInastance(context).saveDeliveryInfo(response.Data.DeliveryName,loginBinding.edtUserId.text.toString())
+                        }
+                        else -> {
+                            loginBinding.loginBtn.isEnabled = true
+                            showErrorMessage(response.Result.ErrMsg)
+                            showErrorMessage("please check your validate data ,or internet connection")
+                        }
+                    }
+                },
+                { throwable ->
+                    Log.e("errorMessage: ", throwable.message ?: "onError")
+                }
+            )
+
+    }
+
+    private fun showErrorMessage(message: String) {
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
 
     private fun validateFormsInput():Boolean{
@@ -103,13 +130,13 @@ class LoginScreenFragment : Fragment() {
                         AutoTransition()
                     )
                     hiddenView.visibility = View.GONE
-                    showMoreLessBtn.text = "Show More"
+                    showMoreLessBtn.text = context?.resources?.getString(R.string.show_more_st)
                 }else{
                     TransitionManager.beginDelayedTransition(bigLin,
                         AutoTransition()
                     )
                     hiddenView.visibility = View.VISIBLE
-                    showMoreLessBtn.text = "Show Less"
+                    showMoreLessBtn.text = context?.resources?.getString(R.string.show_less_st)
                 }
             }
         }

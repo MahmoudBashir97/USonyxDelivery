@@ -1,22 +1,23 @@
 package com.mahmoudbashir.onyxdelivery.repository
 
-import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
+import com.mahmoudbashir.onyxdelivery.pojo.DeliveryModel
 import com.mahmoudbashir.onyxdelivery.pojo.LoginResponseModel
 import com.mahmoudbashir.onyxdelivery.pojo.billsDetailsModel.BillsDetailsResponseModel
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.BillItemsModel
 import com.mahmoudbashir.onyxdelivery.retrofit.ApiServiceInterface
-import com.mahmoudbashir.onyxdelivery.retrofit.RetrofitInstance
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 
 class DeliveryRepository(private val apiService:ApiServiceInterface): apiRepositoryInterface{
-    override suspend fun doLoginDelivery(loginModel: LoginModel): Response<LoginResponseModel>
-     = apiService.LoginUser(loginModel)
 
-    override fun gettingBillsItem(loginModel: LoginModel): Observable<BillItemsModel>  =
-        apiService.GetBillsList(loginModel)
+    override fun doLoginDelivery(deliveryModel: DeliveryModel): Single<LoginResponseModel>
+     = apiService.LoginUser(deliveryModel)
 
-    override fun gettingBillsDetailsItem(loginModel: LoginModel): Observable<BillsDetailsResponseModel> =
-        apiService.GetOrderDetails(loginModel)
+    override fun gettingBillsItem(deliveryModel: DeliveryModel): Observable<BillItemsModel>  =
+        apiService.GetBillsList(deliveryModel)
+
+    override fun gettingBillsDetailsItem(deliveryModel: DeliveryModel): Observable<BillsDetailsResponseModel> =
+        apiService.GetOrderDetails(deliveryModel)
 
 }

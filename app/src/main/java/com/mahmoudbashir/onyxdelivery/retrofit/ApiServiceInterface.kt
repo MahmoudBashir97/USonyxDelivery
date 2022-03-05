@@ -1,10 +1,11 @@
 package com.mahmoudbashir.onyxdelivery.retrofit
 
-import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
+import com.mahmoudbashir.onyxdelivery.pojo.DeliveryModel
 import com.mahmoudbashir.onyxdelivery.pojo.LoginResponseModel
 import com.mahmoudbashir.onyxdelivery.pojo.billsDetailsModel.BillsDetailsResponseModel
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.BillItemsModel
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -12,13 +13,13 @@ import retrofit2.http.POST
 interface ApiServiceInterface {
 
     @POST("OnyxDeliveryService/Service.svc/CheckDeliveryLogin")
-    suspend fun LoginUser(@Body loginModel: LoginModel):Response<LoginResponseModel>
+    fun LoginUser(@Body deliveryModel: DeliveryModel):Single<LoginResponseModel>
 
     @POST("OnyxDeliveryService/Service.svc/GetDeliveryBillsItems")
-    fun GetBillsList(@Body loginModel: LoginModel):Observable<BillItemsModel>
+    fun GetBillsList(@Body deliveryModel: DeliveryModel):Observable<BillItemsModel>
 
 
     @POST("OnyxDeliveryService/Service.svc/GetDeliveryBillsItems")
-    fun GetOrderDetails(@Body loginModel: LoginModel):Observable<BillsDetailsResponseModel>
+    fun GetOrderDetails(@Body deliveryModel: DeliveryModel):Observable<BillsDetailsResponseModel>
 
 }
