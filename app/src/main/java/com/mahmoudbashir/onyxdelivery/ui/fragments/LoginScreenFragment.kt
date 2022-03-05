@@ -33,7 +33,6 @@ class LoginScreenFragment : Fragment() {
     lateinit var loginBinding : FragmentLoginScreenBinding
     lateinit var login_VM : LoginViewModel
 
-    var isLogged = false
     override fun onAttach(context: Context) {
         super.onAttach(context)
        login_VM = (activity as MainActivity).loginVM
@@ -64,8 +63,9 @@ class LoginScreenFragment : Fragment() {
         loginBinding.apply {
             loginBtn.setOnClickListener {
                 if (validateFormsInput()){
+                    loginBinding.isLogging = true
                     doLogin()
-                }
+                }else loginBinding.isLogging = false
             }
         }
     }
@@ -83,11 +83,13 @@ class LoginScreenFragment : Fragment() {
                 { response ->
                     when(response.Result.ErrNo){
                         0 -> {
+                            loginBinding.isLogging = false
                             Log.d("loginStatus : ","Logged in ")
                             findNavController().navigate(LoginScreenFragmentDirections.actionLoginScreenFragmentToHomeDeliveryOrdersFragment())
                             SharedPreference.getInastance(context).saveDeliveryInfo(response.Data.DeliveryName,loginBinding.edtUserId.text.toString())
                         }
                         else -> {
+                            loginBinding.isLogging = false
                             loginBinding.loginBtn.isEnabled = true
                             showErrorMessage(response.Result.ErrMsg)
                             showErrorMessage("please check your validate data ,or internet connection")
@@ -95,6 +97,7 @@ class LoginScreenFragment : Fragment() {
                     }
                 },
                 { throwable ->
+                    loginBinding.isLogging = false
                     Log.e("errorMessage: ", throwable.message ?: "onError")
                 }
             )

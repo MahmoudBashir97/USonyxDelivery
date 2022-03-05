@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="isLogging"
+            type="boolean" />
         <import type="android.view.View"/>
     </data>
 
@@ -185,6 +188,13 @@
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:layout_margin="@dimen/_17sdp" />
+
+                <ProgressBar
+                    android:id="@+id/pro_bar"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="@{isLogging?View.VISIBLE : View.GONE,default= gone}"/>
 
                 <ImageView
                     android:layout_width="@dimen/_194sdp"
