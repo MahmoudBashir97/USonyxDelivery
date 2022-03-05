@@ -6,24 +6,20 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
 import com.mahmoudbashir.onyxdelivery.pojo.billsDetailsModel.BillsDetailsResponseModel
-import com.mahmoudbashir.onyxdelivery.pojo.billsModel.BillItemsModel
 import com.mahmoudbashir.onyxdelivery.repository.DeliveryRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class OrdersViewModel(val app:Application,val repo :DeliveryRepository): AndroidViewModel(app) {
+class OrderDetailsViewModel(val app: Application, val repo : DeliveryRepository): AndroidViewModel(app)  {
+    val billsDetailsItem : MutableLiveData<BillsDetailsResponseModel> = MutableLiveData()
 
-      val billsItem : MutableLiveData<BillItemsModel> = MutableLiveData()
-
-
-    fun getBillsItem(model:LoginModel){
-
-        repo.gettingBillsItem(model)
+    fun getBillsItemDetails(model: LoginModel){
+        repo.gettingBillsDetailsItem(model)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { response ->
-                    if (response != null) billsItem.postValue(response)
+                    if (response != null) billsDetailsItem.postValue(response)
                 },
                 { throwable ->
 
@@ -31,6 +27,4 @@ class OrdersViewModel(val app:Application,val repo :DeliveryRepository): Android
                 }
             )
     }
-
-
 }

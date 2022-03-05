@@ -6,6 +6,7 @@ import com.mahmoudbashir.onyxdelivery.retrofit.ApiServiceInterface
 import com.mahmoudbashir.onyxdelivery.retrofit.RetrofitInstance
 import com.mahmoudbashir.onyxdelivery.utils.Constants
 import com.mahmoudbashir.onyxdelivery.viewModel.LoginViewModel
+import com.mahmoudbashir.onyxdelivery.viewModel.OrderDetailsViewModel
 import com.mahmoudbashir.onyxdelivery.viewModel.OrdersViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -41,6 +42,12 @@ val mainViewModel = module {
 val orderViewModel = module {
     viewModel {
         OrdersViewModel(androidApplication(),get())
+    }
+}
+
+val orderDetailsViewModel = module {
+    viewModel {
+        OrderDetailsViewModel(androidApplication(),get())
     }
 }
 

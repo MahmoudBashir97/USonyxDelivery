@@ -248,20 +248,18 @@
                 android:elevation="@dimen/_5sdp"
                 android:background="@color/white"
                 android:visibility="visible">
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="4"
-                    android:layout_marginBottom="@dimen/_8sdp">
+                    android:layout_margin="@dimen/_5sdp"
+                    android:padding="@dimen/_5sdp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Item(s)"
                         android:textSize="@dimen/_14sdp"
                         android:textColor="@color/redItemColor"
-                        android:layout_weight="2"
-                        android:gravity="center"
+                        android:layout_alignParentStart="true"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -269,8 +267,7 @@
                         android:text="Quantity"
                         android:textSize="@dimen/_14sdp"
                         android:textColor="@color/redItemColor"
-                        android:layout_weight="1"
-                        android:gravity="center"
+                        android:layout_centerHorizontal="true"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -278,10 +275,9 @@
                         android:text="Price"
                         android:textSize="@dimen/_14sdp"
                         android:textColor="@color/redItemColor"
-                        android:layout_weight="1"
-                        android:gravity="center"
+                        android:layout_alignParentEnd="true"
                         />
-                </LinearLayout>
+                </RelativeLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rec_order_details"
                     android:layout_width="match_parent"

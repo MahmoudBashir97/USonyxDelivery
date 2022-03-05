@@ -1,5 +1,6 @@
 package com.mahmoudbashir.onyxdelivery.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -26,10 +27,11 @@ class OrderDetailsAdapter : RecyclerView.Adapter<OrderDetailsAdapter.OrderViewHo
     inner class OrderViewHolder(private val binding: SingleOrderPriceDetailsItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item:DeliveryBillItem){
             with(binding){
+                Log.d("mess : ","List : $item")
 
-                itemTitleTxt.text = item.I_NM.substring(1,10)
+                itemTitleTxt.text = item.I_NM.substring(1,item.I_NM.length)
                 itemQuantityTxt.text = "${item.I_QTY}x"
-                itemPriceTxt.text = "${item.I_PRICE}LE"
+                itemPriceTxt.text = "${item.I_PRICE.split(".")[0]}LE"
 
             }
         }
@@ -38,12 +40,13 @@ class OrderDetailsAdapter : RecyclerView.Adapter<OrderDetailsAdapter.OrderViewHo
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = SingleOrderPriceDetailsItemBinding.inflate(inflater)
+
         return OrderViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         val item  = differ.currentList[position]
-
+        holder.bind(item)
     }
 
     override fun getItemCount(): Int = differ.currentList.size

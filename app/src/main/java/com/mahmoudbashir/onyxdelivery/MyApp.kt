@@ -3,6 +3,7 @@ package com.mahmoudbashir.onyxdelivery
 import android.app.Application
 import com.mahmoudbashir.onyxdelivery.koin.dataModule
 import com.mahmoudbashir.onyxdelivery.koin.mainViewModel
+import com.mahmoudbashir.onyxdelivery.koin.orderDetailsViewModel
 import com.mahmoudbashir.onyxdelivery.koin.orderViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -17,7 +18,8 @@ class MyApp : Application() {
             modules(
                 dataModule,
                 mainViewModel,
-                orderViewModel
+                orderViewModel,
+                orderDetailsViewModel
                 )
         }
     }

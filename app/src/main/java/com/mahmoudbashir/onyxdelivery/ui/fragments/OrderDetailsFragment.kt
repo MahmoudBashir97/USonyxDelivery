@@ -2,6 +2,7 @@ package com.mahmoudbashir.onyxdelivery.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mahmoudbashir.onyxdelivery.R
+import com.mahmoudbashir.onyxdelivery.adapters.OrderDetailsAdapter
 import com.mahmoudbashir.onyxdelivery.databinding.FragmentOrderDetailsBinding
 import com.mahmoudbashir.onyxdelivery.local.SharedPreference
 import com.mahmoudbashir.onyxdelivery.pojo.LoginModel
@@ -18,13 +20,15 @@ import com.mahmoudbashir.onyxdelivery.pojo.Value
 import com.mahmoudbashir.onyxdelivery.pojo.billsModel.DeliveryBill
 import com.mahmoudbashir.onyxdelivery.ui.activities.MainActivity
 import com.mahmoudbashir.onyxdelivery.ui.common.TransitionClass
-import com.mahmoudbashir.onyxdelivery.viewModel.OrdersViewModel
+import com.mahmoudbashir.onyxdelivery.viewModel.OrderDetailsViewModel
+import org.koin.android.ext.android.inject
 
 
 class OrderDetailsFragment : Fragment() {
 
     lateinit var detailsBinding: FragmentOrderDetailsBinding
-    lateinit var orderVM : OrdersViewModel
+    val orderVM by inject<OrderDetailsViewModel>()
+    lateinit var orderDetailsAdapter: OrderDetailsAdapter
 
     val args:OrderDetailsFragmentArgs by navArgs()
     var item: DeliveryBill? = null
@@ -32,7 +36,7 @@ class OrderDetailsFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        orderVM = (activity as MainActivity).ordersVM
+        orderDetailsAdapter = OrderDetailsAdapter()
         item = args.billItem
 
     }
@@ -50,7 +54,8 @@ class OrderDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpRecyclerView()
+
+
         backToPrevScreen()
         workOnTransitionForViews()
         setUpDataToViews()
@@ -58,10 +63,9 @@ class OrderDetailsFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-
         detailsBinding.recOrderDetails.apply {
             setHasFixedSize(true)
-
+            adapter = orderDetailsAdapter
         }
     }
 
@@ -75,13 +79,15 @@ class OrderDetailsFragment : Fragment() {
             )
         )
 
-        orderVM.getBillsItem(model)
+        orderVM.getBillsItemDetails(model)
         orderVM.billsDetailsItem.observe(viewLifecycleOwner,{
             responseModel ->
             when(responseModel.Result.ErrNo){
 
                 0 ->{
-
+                    Log.d("mess : ","List : ${responseModel.Data.DeliveryBillItems}")
+                    setUpRecyclerView()
+                    orderDetailsAdapter.differ.submitList(responseModel.Data.DeliveryBillItems)
                 }
                 1 -> {
 
