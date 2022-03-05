@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class OrderDetailsViewModel(val app: Application, val repo : DeliveryRepository): AndroidViewModel(app)  {
     val billsDetailsItem : MutableLiveData<BillsDetailsResponseModel> = MutableLiveData()
 
+    // this to get Bills ItemList for single order and we handle response before passing it to MutableLiveData
     fun getBillsItemDetails(model: DeliveryModel){
         repo.gettingBillsDetailsItem(model)
             .subscribeOn(Schedulers.io())

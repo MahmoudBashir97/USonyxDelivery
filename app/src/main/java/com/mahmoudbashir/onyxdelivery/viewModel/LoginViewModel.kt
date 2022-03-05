@@ -14,6 +14,7 @@ class LoginViewModel(val app :Application,val deliveryRepo: DeliveryRepository):
 
     val loginStatusResponse:MutableLiveData<Resource<LoginResponseModel>> = MutableLiveData()
 
+    // here we do login with passed data by using Single Rxjava
     fun doLoginDelivery(model: DeliveryModel) =
         deliveryRepo.doLoginDelivery(model)
 }
